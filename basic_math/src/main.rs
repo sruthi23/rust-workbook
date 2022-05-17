@@ -4,26 +4,39 @@ fn main() {
     println!("Enter first number");
     let mut num1 = String::new();
     io::stdin().read_line(&mut num1).expect("Failed to read number");
-    num1 = num1.parse().unwrap();
+    let a: i32 = num1.trim().parse().unwrap();
 
     println!("Enter second number");
 
     let mut num2 = String::new();
     io::stdin().read_line(&mut num2).expect("Failed to read number");
-    num2 = num2.parse().unwrap(); println!("First number: {} and Second number: {}",num1,num2);
+    let b: i32 = num2.trim().parse().unwrap();
+    println!("First number: {} and Second number: {}",num1,num2);
 
     println!("Press 1 to add and 2 to substract");
     let mut op = String::new();
     io::stdin().read_line(&mut op).expect("Failed to read the operator");
-    op = op.parse().unwrap();
-    println!("your choice is {}", op);
+    let trimmed = op.trim().parse::<i32>().unwrap();
 
+   match trimmed{
+       1 => {
+           let k = sum(a,b);
+           println!("Result is {}", k);
+       },
+       2 => {
+           let k = substract(a,b);
+           println!("Result is {}", k);
+       },
+       _ => {
+           println!("Wrong operator");
+       }
+   }
+}
+fn sum(i: i32, j: i32)->i32 {
+    println!("The value of x is: {} {}", i,j);
+    return i+j;
 }
 
-fn sum(i: i32, j: i32)-> i32{
-    i+j
-}
-
-fn substract(i: i32, j: i32)-> i32{
-    i-j
+fn substract(i: i32, j: i32)->i32{
+    return i-j;
 }

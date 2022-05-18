@@ -13,7 +13,7 @@ fn main() {
     let b: i32 = num2.trim().parse().unwrap();
     println!("First number: {} and Second number: {}",num1,num2);
 
-    println!("Press 1 to add and 2 to substract");
+    println!("Press 1 to add, 2 to substract, 3 to multiply and 4 for division");
     let mut op = String::new();
     io::stdin().read_line(&mut op).expect("Failed to read the operator");
     let trimmed = op.trim().parse::<i32>().unwrap();
@@ -27,6 +27,18 @@ fn main() {
            let k = substract(a,b);
            println!("Result is {}", k);
        },
+      3 => {
+          let k = mul(a,b);
+          println!("Result is {}", k);
+      },
+      4 => {
+          let k = div(a,b);
+          if k==0{
+              println!("Cannot divisible by 0");
+          }else{
+          println!("Result is {}", k);
+          }
+      },
        _ => {
            println!("Wrong operator");
        }
@@ -39,4 +51,16 @@ fn sum(i: i32, j: i32)->i32 {
 
 fn substract(i: i32, j: i32)->i32{
     return i-j;
+}
+
+fn div(i: i32, j: i32)->i32 {
+    if j>0 {
+       return i/j;
+    }else{
+        return 0;
+    }
+}
+
+fn mul(i: i32, j: i32)->i32 {
+    return i*j;
 }
